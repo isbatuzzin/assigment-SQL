@@ -1,3 +1,4 @@
+-- nomor 3 tabel student
 -- create database
 create database sekolah;
 
@@ -18,6 +19,7 @@ create table student (
     PRIMARY KEY (Personid)
 );
 
+-- nomor 4 dataset film
 -- store procedure/function  menghitung jumlah film  berdasarkan genre
 
 CREATE OR REPLACE FUNCTION hitung_jumlah_film_berdasarkan_genre(
@@ -37,3 +39,38 @@ $$ LANGUAGE plpgsql;
 
 --call function
 select hitung_jumlah_film_berdasarkan_genre(1002) a;
+
+
+-- nomor 5 dataset ninja
+-- query tanda index
+select nama, desa from ninja where email='naruto@mail.com';
+
+explain select nama, desa from ninja where email='naruto@mail.com';
+
+-- buat index email
+create index email_idx on ninja (email);
+
+-- lihat hasil index
+\d ninja;
+
+set enable_seqscan = off;
+
+-- test
+explain select nama, desa from ninja where email='naruto@mail.com';
+
+
+-- nomor 6
+
+
+-- nomor 7
+
+
+-- nomor 8
+
+
+-- nomor 9
+
+
+-- nomor 10
+
+
