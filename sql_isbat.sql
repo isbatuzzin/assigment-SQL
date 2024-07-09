@@ -63,8 +63,8 @@ explain select nama, desa from ninja where email='naruto@mail.com';
 select *, rank() over (
             partition by gen_id
             order by num_o_ratings desc) as ranking_film 
-from (select m.mov_id, mg.gen_id,  r.num_o_ratings from movie m
-    right join movie_genres mg on m.mov_id=mg.mov_id
+from (
+    
         left join rating r on mg.mov_id=r.mov_id
 ) tabel_rating
 where num_o_ratings is not null;
@@ -76,8 +76,13 @@ where num_o_ratings is not null;
 
 
 -- nomor 9
-
-
+select gen_title, count(mov_id) 
+from (select m.mov_id, mg.gen_id, g.gen_title  
+        from movie m
+            left join movie_genres mg on m.mov_id=mg.mov_id
+                left join genres g on g.gen_id=mg.gen_id
+                    where gen_title in ('Mystery', 'Drama', 'Adventure')) tabel_genre 
+group by gen_title;
 -- nomor 10
 
 
