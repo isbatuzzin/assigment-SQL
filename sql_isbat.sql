@@ -95,4 +95,11 @@ group by gen_title;
 
 -- nomor 10
 -- Memberi label durasi film
+select mov_id, mov_title, mov_time, 
+    case 
+        when mov_time < 100 then 'short movie'
+        when mov_time between 100 and 130 then 'normal movie'
+    else 'long movie'
+    end as label_durasi_film
+from movie;
 
