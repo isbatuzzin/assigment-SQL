@@ -60,7 +60,14 @@ explain select nama, desa from ninja where email='naruto@mail.com';
 
 
 -- nomor 6
-
+select *, rank() over (
+            partition by gen_id
+            order by num_o_ratings desc) as ranking_film 
+from (select m.mov_id, mg.gen_id,  r.num_o_ratings from movie m
+    right join movie_genres mg on m.mov_id=mg.mov_id
+        left join rating r on mg.mov_id=r.mov_id
+) tabel_rating
+where num_o_ratings is not null;
 
 -- nomor 7
 
