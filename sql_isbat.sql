@@ -70,19 +70,29 @@ from (
 where num_o_ratings is not null;
 
 -- nomor 7
-
+select m.mov_title 
+from movie m, movie_direction md 
+where 
+    m.mov_id=md.mov_id and md.dir_id=(select dir_id from director where dir_fname ='James' and dir_lname='Cameron');
 
 -- nomor 8
+select distinct act_fname as actor_dan_sutradara
+from actor
+UNION 
+select distinct dir_fname
+from director;
 
 
 -- nomor 9
+-- mencari jumlah film yang bergenre 'Mystery', 'Drama', 'Adventure'
 select gen_title, count(mov_id) 
 from (select m.mov_id, mg.gen_id, g.gen_title  
-        from movie m
+        from movie
             left join movie_genres mg on m.mov_id=mg.mov_id
                 left join genres g on g.gen_id=mg.gen_id
                     where gen_title in ('Mystery', 'Drama', 'Adventure')) tabel_genre 
 group by gen_title;
--- nomor 10
 
+-- nomor 10
+-- Memberi label durasi film
 
